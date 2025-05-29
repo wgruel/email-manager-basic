@@ -2,7 +2,6 @@
     require_once __DIR__ . '/config.php';
 
     if(isset($_POST['btn-save']) && !empty($_POST['email'])){
-        
         $text = $_POST['email'];
         $emailStorage->add($text);
 
