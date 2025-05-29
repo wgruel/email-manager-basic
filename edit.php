@@ -1,37 +1,17 @@
 <?php
-include("config.php");
+    require_once __DIR__ . '/config.php';
 
-if (isset($_POST['btn-save'])) {
-    $oldEmail = trim($_POST['oldEmail']);
-    $newEmail = trim($_POST['newEmail']);
+    if (isset($_POST['btn-save'])) {
+        $oldEmail = trim($_POST['oldEmail']);
+        $newEmail = trim($_POST['newEmail']);
+        $emailStorage->update($oldEmail, $newEmail);
 
-    // Read all lines, ignore new and empty lines
-    $lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
-    $updatedList = [];
-    // Replace old email with new one
-    foreach ($lines as $line) {
-        if (trim($line) == $oldEmail) {
-            $updatedList[] = $newEmail; 
-        }
-        else {
-            $updatedList[] = $line;
-        }
+        // Redirect back to main page
+        header('Location: index.php');
+        exit();
     }
 
-    // Write updated lines back to file
-    $textToStore = "";
-    foreach ($updatedList as $line) {
-        $textToStore .= $line . "\n";
-    }
-    file_put_contents($filename, $textToStore);
-
-    // Redirect back to main page
-    header('Location: index.php');
-    exit();
-}
-
-$oldEmail = $_GET['email'];
+    $oldEmail = $_GET['email'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

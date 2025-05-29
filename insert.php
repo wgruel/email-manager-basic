@@ -1,14 +1,13 @@
 <?php
-    include('config.php');
+    require_once __DIR__ . '/config.php';
 
-    if(isset($_POST['btn-save'])){
-        // here, we will put the save-operations...
-        // but we can just output the information that was sent to our page...
-        $text = $_POST['email'] . "\n";
-        file_put_contents($filename, $text, FILE_APPEND);
+    if(isset($_POST['btn-save']) && !empty($_POST['email'])){
+        
+        $text = $_POST['email'];
+        $emailStorage->add($text);
 
         // Redirect back to index
-        // header('Location: index.php');
+        header('Location: index.php');
         exit();
     }
 ?>
