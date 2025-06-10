@@ -68,7 +68,7 @@ class EmailController {
             // if old and new email are provided
             if ($_POST['oldEmail'] && $_POST['newEmail']) {
                 // update emailadddress
-                $this->ems->update($_POST['oldEmail'], $_POST['newEmail'])
+                $this->ems->update($_POST['oldEmail'], $_POST['newEmail']); 
                 // redirect to index
                 header('Location: index.php?action=index');
                 exit;
